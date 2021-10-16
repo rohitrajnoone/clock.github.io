@@ -1,0 +1,174 @@
+<!-- Created by Wixonic -->
+
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en_US" lang="en_US">
+	
+	<head>
+  <script>const align = (n,s=2) =>
+{
+	n = String(n);
+	
+	for (let x = n.length; x < s; ++x)
+	{
+		n = "0" + n;
+	}
+	
+	return n;
+};
+
+const decToBin = (n) =>
+{
+	let y = 0;
+	let b = "";
+	
+	while (n > 0 && y <= 100)
+	{
+		b += n % 2;
+		n = Math.floor(n / 2);
+		y++;
+	}
+	
+	if (y >= 100)
+	{
+		throw "Too large number";
+	}
+	
+	if (b !== "")
+	{
+		b = b.split("");
+		b = b.reverse();
+		b = b.join("");
+	}
+	
+	b = align(b,6);
+	
+	return b.split("0").join("<blue>0</blue>").split("1").join("<red>1</red>");
+};
+
+const update = () =>
+{
+	const now = new Date();
+	
+	document.getElementById("clock")
+	.innerHTML = `${align(now.getHours())}:${
+align(now.getMinutes())}:${align(now.getSeconds())}`;
+	
+	document.getElementById("binclock")
+	.innerHTML = `<div class="hours">${decToBin(now.getHours())}</div><div class="minutes">${decToBin(now.getMinutes())}</div><div class="seconds">${decToBin(now.getSeconds())}</div>`;
+	
+	requestAnimationFrame(update);
+};
+
+onload = update;
+  </script>
+		
+		<title>Binary Clock | For Fun</title>
+		
+		<meta charset="utf-8" />
+		
+		<meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1, viewport-fit=cover" />
+		
+		<meta name="author" content="Wixonic" />
+    <style>
+    @import url("https://rsms.me/inter/inter.css");
+
+:root
+{
+	background: #111115;
+	color: white;
+	font-family: "Inter", "Avenir Next", Avenir, Arial, Futura;
+}
+
+:root,
+:root *
+{
+	-webkit-user-select: none;
+	-moz-user-select: none;
+	-ms-user-select: none;
+	user-select: none;
+	-webkit-appearance: none;
+	-moz-appearance: none;
+	-ms-appearance: none;
+	appearance: none;
+	-webkit-touch-callout: none;
+	-webkit-tap-highlight-color: transparent;
+	-ms-overflow-style: none;
+	scrollbar: none;
+	box-sizing: border-box;
+	text-align: center;
+	outline: none;
+}
+
+#container
+{
+	display: grid;
+	grid-template-rows: 1fr 2rem;
+	grid-template-columns: 1fr;
+	
+	position: fixed;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 100%;
+}
+
+#clock,
+#binclock
+{
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+}
+
+#clock
+{
+	grid-row: 2;
+}
+
+#binclock
+{
+	grid-row: 1;
+	
+	font-family: Menlo, Monospace;
+	font-size: 5rem;
+}
+
+#binclock blue
+{
+	color: #00CCFF;
+}
+
+#binclock red
+{
+	color: #FF0600;
+}</style>
+		
+	</head>
+	
+	<body>
+		
+		<div id="container">
+			
+			<div id="clock">
+				
+				00:00:00
+				
+			</div>
+			
+			<div id="binclock">
+				
+				<div class="hours">000000</div>
+				<div class="minutes">000000</div>
+				<div class="seconds">000000</div>
+				
+			</div>
+			
+		</div>
+		
+	</body>
+	
+</html>
+
+<!-- Created by Wixonic -->
